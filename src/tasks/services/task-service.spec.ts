@@ -18,7 +18,7 @@ describe("task service", () => {
 		const service = taskService();
 
 		expect(() => service.createNewTask({ title: " " })).to.throw(
-			"Validation error"
+			"Validation failed, please double check your form and try again"
 		);
 	});
 
@@ -30,14 +30,16 @@ describe("task service", () => {
 				title:
 					"Transform Your Life | 5 Essential Habits for Lasting Improvement",
 			})
-		).to.throw("Validation error");
+		).to.throw(
+			"Validation failed, please double check your form and try again"
+		);
 	});
 
 	it("should raise an validation error when title is too short", () => {
 		const service = taskService();
 
 		expect(() => service.createNewTask({ title: " FV" })).to.throw(
-			"Validation error"
+			"Validation failed, please double check your form and try again"
 		);
 	});
 
@@ -49,7 +51,9 @@ describe("task service", () => {
 				title: "Correct title",
 				description: Array(501).fill("t").join(""),
 			})
-		).to.throw("Validation error");
+		).to.throw(
+			"Validation failed, please double check your form and try again"
+		);
 	});
 
 	it("should raise an validation error when description is too short", () => {
@@ -60,7 +64,9 @@ describe("task service", () => {
 				title: "Correct title",
 				description: "too short",
 			})
-		).to.throw("Validation error");
+		).to.throw(
+			"Validation failed, please double check your form and try again"
+		);
 	});
 
 	it("should accept deadline only within ISO 8601 format", () => {
@@ -86,6 +92,8 @@ describe("task service", () => {
 				title: "Correct title",
 				deadline: "2020-01-01",
 			})
-		).to.throw("Validation error");
+		).to.throw(
+			"Validation failed, please double check your form and try again"
+		);
 	});
 });

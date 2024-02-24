@@ -1,3 +1,4 @@
+import { errorService } from "../../errors/services/error-service.js";
 import { createTask } from "../model/task-model.js";
 import { createTaskValidationSchema } from "../validation/task-validation-schema.js";
 
@@ -23,8 +24,13 @@ export const taskService = () => {
 		deadline,
 		description,
 	}: CreateNewTaskParams) => {
-		if (_validateTask({ title, deadline, description }) === "invalid")
-			throw new Error("Validation error");
+		const { createValidationError, throwError } = errorService()
+
+		if (_validateTask({ title, deadline, description }) === "invalid") {
+			const error = createValidationError({ message: 'Validation failed, please double check your form and try again' });
+
+			throwError(error)
+		}
 
 		const newTask = createTask({
 			title,
