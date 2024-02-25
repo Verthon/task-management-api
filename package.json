@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"test.unit": "TS_NODE_PROJECT='./tsconfig.test.json' mocha --allow-uncaught",
+		"test.unit": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
 		"test.unit.watch": "TS_NODE_PROJECT='./tsconfig.test.json' mocha --watch",
 		"build": "tsc"
 	},
@@ -26,10 +26,12 @@
 	"devDependencies": {
 		"@ava/typescript": "4.1.0",
 		"@types/chai": "4.3.11",
+		"@types/chai-as-promised": "7.1.8",
 		"@types/koa": "2.14.0",
 		"@types/mocha": "10.0.6",
 		"@types/node": "20.11.19",
-		"chai": "5.1.0",
+		"chai": "4.4.1",
+		"chai-as-promised": "7.1.1",
 		"mocha": "10.3.0",
 		"ts-node": "10.9.2",
 		"tsx": "4.7.1",
