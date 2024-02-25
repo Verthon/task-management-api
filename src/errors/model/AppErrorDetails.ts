@@ -5,9 +5,9 @@ import type { Message } from "./Message.js";
 import type { SystemMessage } from "./SystemMessage.js";
 
 export type AppErrorDetails = {
-	systemMessage: SystemMessage;
-	message: Message;
-	httpCode: HTTPCode;
-	severity: ErrorServerity;
-	type: ErrorType;
+  systemMessage: SystemMessage;
+  message: Message;
+  httpCode: HTTPCode;
+  severity: ErrorServerity;
+  type: ErrorType;
 };
