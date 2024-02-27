@@ -1,2 +1,4 @@
 dist
 node_modules
+src/infrastructure/database/migrations/**/*
+src/infrastructure/database/migrationRunner.js

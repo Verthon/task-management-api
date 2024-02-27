@@ -1,46 +1,57 @@
+import { db } from "src/infrastructure/database/db.js";
 import type { Task } from "../model/task-model.js";
 
 type CreateTasksRepositoryParams = "default" | "inMemory";
 
 type WithId<TData extends object> = {
-  id: number;
+	id: number;
 } & TData;
 
 const inMemoryTaskRepository = () => {
-  const tasks: WithId<Task>[] = [];
+	const tasks: WithId<Task>[] = [];
 
-  const _generateId = () => {
-    const lastTaskId = tasks[tasks.length - 1]?.id ?? 0;
-    const currentIndex = lastTaskId + 1;
+	const _generateId = () => {
+		const lastTaskId = tasks[tasks.length - 1]?.id ?? 0;
+		const currentIndex = lastTaskId + 1;
 
-    return currentIndex;
-  };
+		return currentIndex;
+	};
 
-  const create = async (task: Task) => {
-    const id = _generateId();
-    const newTask = { id, ...task };
-    tasks.push(newTask);
+	const create = async (task: Task) => {
+		const id = _generateId();
+		const newTask = { id, ...task };
+		tasks.push(newTask);
 
-    return newTask;
-  };
+		return newTask;
+	};
 
-  return {
-    create,
-  };
+	return {
+		create,
+	};
+};
+
+const taskRepository = () => {
+	const create = async (task: Task) => {
+		const [id] = await db("tasks").insert(task).returning("id");
+		return { id, ...task };
+	};
+
+	return {
+		create,
+	};
 };
 
 export const createTasksRepository = (
-  variant: CreateTasksRepositoryParams = "default",
+	variant: CreateTasksRepositoryParams = "default"
 ) => {
-  const repository = variant
-    ? inMemoryTaskRepository()
-    : inMemoryTaskRepository();
+	const repository =
+		variant === "inMemory" ? inMemoryTaskRepository() : taskRepository();
 
-  const create = async (task: Task) => {
-    return await repository.create(task);
-  };
+	const create = async (task: Task) => {
+		return await repository.create(task);
+	};
 
-  return {
-    create,
-  };
+	return {
+		create,
+	};
 };

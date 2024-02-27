@@ -1,54 +1,58 @@
 {
-  "name": "task-management-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test.unit": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
-    "test.unit.watch": "TS_NODE_PROJECT='./tsconfig.test.json' mocha --watch",
-    "lint": "eslint .",
-    "lint.fix": "npm run lint -- --fix",
-    "format": "prettier --write ./src/**/*",
-    "build": "tsc"
-  },
-  "engines": {
-    "node": "20"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Verthon/task-management-api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Verthon/task-management-api/issues"
-  },
-  "homepage": "https://github.com/Verthon/task-management-api#readme",
-  "dependencies": {
-    "koa": "2.15.0",
-    "zod": "3.22.4"
-  },
-  "devDependencies": {
-    "@ava/typescript": "4.1.0",
-    "@types/chai": "4.3.11",
-    "@types/chai-as-promised": "7.1.8",
-    "@types/koa": "2.14.0",
-    "@types/mocha": "10.0.6",
-    "@types/node": "20.11.19",
-    "@typescript-eslint/eslint-plugin": "7.0.2",
-    "@typescript-eslint/parser": "7.0.2",
-    "chai": "4.4.1",
-    "chai-as-promised": "7.1.1",
-    "eslint": "8.57.0",
-    "eslint-import-resolver-typescript": "3.6.1",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-mocha": "10.3.0",
-    "eslint-plugin-security": "2.1.1",
-    "mocha": "10.3.0",
-    "prettier": "3.2.5",
-    "ts-node": "10.9.2",
-    "tsx": "4.7.1",
-    "typescript": "5.3.3"
-  }
+	"name": "task-management-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test.unit": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
+		"test.unit.watch": "TS_NODE_PROJECT='./tsconfig.test.json' mocha --watch",
+		"lint": "eslint .",
+		"lint.fix": "npm run lint -- --fix",
+		"format": "prettier --write ./src/**/*",
+		"build": "tsc",
+		"db.migrate.latest": "node src/infrastructure/database/migrationRunner.js latest",
+		"db.migrate.rollback": "node src/infrastructure/database/migrationRunner.js rollback"
+	},
+	"engines": {
+		"node": "20"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Verthon/task-management-api.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Verthon/task-management-api/issues"
+	},
+	"homepage": "https://github.com/Verthon/task-management-api#readme",
+	"dependencies": {
+		"knex": "3.1.0",
+		"koa": "2.15.0",
+		"sqlite3": "5.1.7",
+		"zod": "3.22.4"
+	},
+	"devDependencies": {
+		"@ava/typescript": "4.1.0",
+		"@types/chai": "4.3.11",
+		"@types/chai-as-promised": "7.1.8",
+		"@types/koa": "2.14.0",
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.11.19",
+		"@typescript-eslint/eslint-plugin": "7.0.2",
+		"@typescript-eslint/parser": "7.0.2",
+		"chai": "4.4.1",
+		"chai-as-promised": "7.1.1",
+		"eslint": "8.57.0",
+		"eslint-import-resolver-typescript": "3.6.1",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-mocha": "10.3.0",
+		"eslint-plugin-security": "2.1.1",
+		"mocha": "10.3.0",
+		"prettier": "3.2.5",
+		"ts-node": "10.9.2",
+		"tsx": "4.7.1",
+		"typescript": "5.3.3"
+	}
 }
