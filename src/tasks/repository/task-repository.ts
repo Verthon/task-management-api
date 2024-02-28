@@ -1,7 +1,6 @@
 import { db } from "src/infrastructure/database/db.js";
 import type { Task } from "../model/task-model.js";
-
-type CreateTasksRepositoryParams = "default" | "inMemory";
+import type { RepositoryVariant } from "../../infrastructure/models/RepositoryVariant.js";
 
 type WithId<TData extends object> = {
 	id: number;
@@ -42,7 +41,7 @@ const taskRepository = () => {
 };
 
 export const createTasksRepository = (
-	variant: CreateTasksRepositoryParams = "default"
+	variant: RepositoryVariant = "default"
 ) => {
 	const repository =
 		variant === "inMemory" ? inMemoryTaskRepository() : taskRepository();
